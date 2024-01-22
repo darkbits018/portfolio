@@ -97,7 +97,8 @@ span {
     width: 15px;
     height: 15px;
     background-color: #fff;
-    border-radius: 50%;
+    border-radius: 0 50% 50% 50%;
+    transform: rotate(45deg);
     margin-bottom: 40px;
     cursor: pointer;
     opacity: 0.5;
