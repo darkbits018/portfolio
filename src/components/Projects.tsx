@@ -12,8 +12,8 @@ const projects: Project[] = [
     role: 'Engineered the backend using Flask and designed server-side solutions for image processing and classification.',
     impact: 'Simplified pet identification for users.',
     imageUrl: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80',
-    githubUrl: '#',
-    liveUrl: '#'
+    githubUrl: 'https://github.com/darkbits018/pup-predict-backend',
+    liveUrl: 'https://github.com/darkbits018/pup-predict-flutter'
   },
   {
     title: '0xCertify',
@@ -22,8 +22,8 @@ const projects: Project[] = [
     role: 'Developed the platform backend and implemented smart contracts for secure and immutable certification.',
     impact: 'Enhanced trust and transparency in certificate validation.',
     imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80',
-    githubUrl: '#',
-    liveUrl: '#'
+    githubUrl: 'https://github.com/darkbits018/0xCertify-Landing',
+    liveUrl: 'https://darkbits018.github.io/0xCertify-Landing/'
   },
   {
     title: 'Road Clearance System',
