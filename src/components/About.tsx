@@ -14,11 +14,11 @@ const highlights = [
     title: 'Backend Developer',
     description: 'Experienced in building robust and scalable backend systems.'
   },
-  {
-    icon: <Globe className="w-8 h-8 text-blue-500" />,
-    title: 'Open Source Contributor',
-    description: 'Active contributor to the developer community through open-source projects.'
-  }
+  // {
+  //   icon: <Globe className="w-8 h-8 text-blue-500" />,
+  //   title: 'Open Source Contributor',
+  //   description: 'Active contributor to the developer community through open-source projects.'
+  // }
 ];
 
 export function About() {
