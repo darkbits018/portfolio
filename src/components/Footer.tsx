@@ -19,7 +19,7 @@ export function Footer() {
               className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-full">
               <Linkedin size={24} />
             </a>
-            <a href="https://github.com/yourusername" 
+            <a href="https://github.com/darkbits018" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-full">
