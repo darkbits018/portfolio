@@ -25,7 +25,7 @@ export function Hero() {
                 View My Projects
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
               </a>
-              <a href=""
+              <a href="../assets/Abhay resume.pdf"
                 className="group px-8 py-3 bg-gray-800 text-white rounded-lg flex items-center gap-2 hover:bg-gray-700 transition-all">
                 Download Resume
                 <Download className="group-hover:translate-y-1 transition-transform" size={20} />
