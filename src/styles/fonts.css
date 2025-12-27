@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'ImagineFont';
+    src: url('../assets/fonts/Imagine_Font.ttf') format('truetype'),
+        url('../assets/fonts/Imagine_Font.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}

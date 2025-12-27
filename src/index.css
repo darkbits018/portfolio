@@ -1,0 +1,124 @@
+@import './styles/fonts.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #1A1D21; /* Set the background color to black */
+}
+
+/* Background noise texture */
+.bg-noise {
+  /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat; */
+
+}
+
+/* Initial state */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+/* When in view */
+.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* When out of view */
+.animate-out {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Animation for the line only */
+.line-animate-on-scroll {
+  opacity: 0;
+  transform: scaleX(0); /* Line starts with 0 width */
+  transform-origin: left; /* Grows from the left side */
+  transition: transform 0.7s ease-in-out 0.3s, opacity 0.7s ease-in-out 0.3s;
+}
+
+.line-animate-in {
+  opacity: 1;
+  transform: scaleX(1); /* Line grows to full width */
+}
+
+/* Apply animation to skill bars when in view */
+.animate-in [data-width] {
+  width: var(--width) !important;
+}
+
+/* Handle scroll animations with JavaScript */
+:root {
+  --primary: #E6C068;
+  --bg-dark: #1A1D21;
+  --bg-light: #22262B;
+  --text: #E0E0E0;
+  --text-muted: #A0A0A0;
+}
+
+/* Adjust scroll position for skills section to account for fixed navbar */
+#skills {
+  scroll-margin-top: 90px;
+}
+
+/* Hide scrollbar for infinite scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Idle Animation for Skills Section */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(230, 192, 104, 0.3);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(230, 192, 104, 0.5);
+  }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+@keyframes orbit-reverse {
+  0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+  100% { transform: rotate(-360deg) translateX(30px) rotate(360deg); }
+}
+
+.idle-animation-container {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-center {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.orbit-particle {
+  animation: orbit 8s linear infinite;
+}
+
+.orbit-particle-reverse {
+  animation: orbit-reverse 6s linear infinite;
+}
