@@ -6,40 +6,81 @@ interface Room3DProps {
   roomIndex: number;
 }
 
-const GarageModel: React.FC = () => {
-  const { scene } = useGLTF('/models/garage-full-scene4.glb');
+const GarageModel: React.FC<{ roomIndex: number }> = ({ roomIndex }) => {
+  // Define which model to use for each room
+  const modelPaths = [
+    '/models/room3.glb',              // Room 1 - Primary Workspace
+    '/models/garage-full-scene4.glb', // Room 2 - Design Studio  
+    null,                             // Room 3 - Learning Corner (Coming Soon)
+    null,                             // Room 4 - Collaboration Space (Coming Soon)
+    null,                             // Room 5 - Creative Lab (Coming Soon)
+  ];
+  
+  const modelPath = modelPaths[roomIndex % modelPaths.length];
+  
+  // If no model path, return null (placeholder will be handled outside Canvas)
+  if (!modelPath) {
+    return null;
+  }
+  
+  const { scene } = useGLTF(modelPath);
   return <primitive object={scene} scale={1} position={[0, 0, 0]} />;
 };
 
 const Room3D: React.FC<Room3DProps> = ({ roomIndex }) => {
+  // Different camera positions for each room
+  const cameraPositions = [
+    [-1.9087032145874474, 1.4677195490871906, 2.2660261802839434], // Room 1 - Fixed position
+    [-1.5219226469646883, 0.8804908013110619, 1.6512277264582982], // Room 2 - Original position
+    [-1.5219226469646883, 0.8804908013110619, 1.6512277264582982], // Room 3 - Original position
+    [-1.5219226469646883, 0.8804908013110619, 1.6512277264582982], // Room 4 - Original position
+    [-1.5219226469646883, 0.8804908013110619, 1.6512277264582982], // Room 5 - Original position
+  ];
+  
+  const currentCameraPosition = cameraPositions[roomIndex] || cameraPositions[0];
+  
+  // Check if this room has a model
+  const hasModel = roomIndex === 0 || roomIndex === 1; // Only rooms 1 and 2 have models
+  
   return (
     <div className="relative h-[500px] flex items-center justify-center">
       <div className="w-[600px] h-[400px] rounded-lg overflow-hidden shadow-2xl">
-        <Canvas
-          camera={{ position: [-1.5219226469646883, 0.8804908013110619, 1.6512277264582982], fov: 50 }}
-          style={{ background: 'transparent' }}
-        >
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <pointLight position={[-10, -10, -10]} intensity={0.3} />
-            
-            <GarageModel />
-            
-            <OrbitControls
-              enablePan={false}
-              enableZoom={false}
-              enableRotate={true}
-              minPolarAngle={Math.PI / 4}
-              maxPolarAngle={Math.PI / 2.5}
-              minAzimuthAngle={-Math.PI / 3}
-              maxAzimuthAngle={Math.PI / 12}
-              target={[0.02007665463905332, 0.13644345300565072, -0.041720523069591654]}
-            />
-            
-            <Environment preset="warehouse" />
-          </Suspense>
-        </Canvas>
+        {hasModel ? (
+          <Canvas
+            camera={{ position: currentCameraPosition, fov: 50 }}
+            style={{ background: 'transparent' }}
+          >
+            <Suspense fallback={null}>
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[10, 10, 5]} intensity={1} />
+              <pointLight position={[-10, -10, -10]} intensity={0.3} />
+              
+              <GarageModel roomIndex={roomIndex} />
+              
+              <OrbitControls
+                enablePan={false}
+                enableZoom={false}
+                enableRotate={true}
+                minPolarAngle={Math.PI / 4}
+                maxPolarAngle={Math.PI / 2.5}
+                minAzimuthAngle={-Math.PI / 3}
+                maxAzimuthAngle={Math.PI / 12}
+                target={[0.02007665463905332, 0.13644345300565072, -0.041720523069591654]}
+              />
+              
+              <Environment preset="warehouse" />
+            </Suspense>
+          </Canvas>
+        ) : (
+          // Coming Soon placeholder for rooms without models
+          <div className="flex items-center justify-center h-full bg-gray-900 rounded-lg">
+            <div className="text-center">
+              <div className="text-6xl mb-4">🚧</div>
+              <div className="text-2xl font-bold text-white mb-2">Coming Soon</div>
+              <div className="text-gray-400">This room is under construction</div>
+            </div>
+          </div>
+        )}
       </div>
       
       {/* Clean shadow */}
